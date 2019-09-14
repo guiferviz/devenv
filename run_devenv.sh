@@ -1,7 +1,9 @@
+#!/bin/sh
 
-docker run --rm \
+docker run \
 	-v ~/.ssh:/home/guiferviz/.ssh \
-	-v $(echo $PWD):/home/guiferviz/workspace \
+	-v $PWD:/home/guiferviz/workspace \
 	-h devenv \
+	--name mydevenv \
 	-ti guiferviz/devenv bash
 

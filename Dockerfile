@@ -14,6 +14,8 @@ RUN apt-get update
 # Create an environment variable that contains the username.
 ENV DOCKER_USER guiferviz
 ENV WORKDIR /home/$DOCKER_USER/workspace
+ENV GIT_EMAIL guiferviz@gmail.com
+ENV GIT_NAME guiferviz 
 
 
 #########################
@@ -41,7 +43,8 @@ USER "$DOCKER_USER"
 
 # This will determine where we will start when we enter the container.
 RUN mkdir -p $WORKDIR
-WORKDIR $WORKDIR
+# Make the user owner of this folder.
+RUN sudo chown -R $DOCKER_USER $WORKDIR
 
 
 #####################
@@ -53,6 +56,8 @@ RUN sudo apt-get install -y tree
 
 # Install Git as a main control version system.
 RUN sudo apt-get install -y git
+RUN git config --global user.email $GIT_EMAIL
+RUN git config --global user.name $GIT_NAME 
 
 # Install make to build things.
 RUN sudo apt-get install -y make
@@ -72,6 +77,21 @@ RUN curl -fLo /home/$DOCKER_USER/.local/share/nvim/site/autoload/plug.vim --crea
 # Install all the plugins.
 RUN nvim +PlugInstall +qall
 
+# Install python.
+# Python is a dependence for neovim, so it should be already installed.
+# Let's install pip.
+RUN sudo apt-get install -y python3-pip
+RUN sudo python3 -m pip install --upgrade pip
+# And venv.
+RUN sudo apt-get install -y python3-venv
+# Create venv.
+RUN python3 -m venv ~/venv
+COPY requirements.txt /home/$DOCKER_USER/venv/requirements.txt
+RUN . ~/venv/bin/activate && pip install -r ~/venv/requirements.txt
+RUN . ~/venv/bin/activate && jupyter contrib nbextension install --user
+RUN . ~/venv/bin/activate && jupyter nbextension enable codefolding/main \
+			  && jupyter nbextension enable execute_time/ExecuteTime
+
 # Install latex.
 #RUN sudo apt-get install -y texlive texlive-binaries texlive-fonts-recommended \
 #    texlive-generic-recommended texlive-latex-base texlive-latex-extra \
@@ -79,4 +99,15 @@ RUN nvim +PlugInstall +qall
 #RUN sudo apt-get install -y texlive-lang-japanese
 #RUN sudo apt-get install -y texlive-lang-spanish
 #RUN sudo apt-get install -y texlive-lang-english
+
+
+################
+# Final setup. #
+################
+
+# Copy .bashrc file.
+COPY .bashrc /home/$DOCKER_USER/.bashrc
+
+# Set default working directory.
+WORKDIR $WORKDIR
 

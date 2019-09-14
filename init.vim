@@ -12,6 +12,20 @@ call plug#begin("~/.config/nvim/pluggins")
 
     " File system browser.
     Plug 'scrooloose/nerdtree'
+    " Nerdtree git support!
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+
+    " Allows you to run git commands from vim.
+    Plug 'tpope/vim-fugitive'
+
+    " A very nice git commit explorer.
+    Plug 'junegunn/gv.vim'
+
+    " Mark tabulations to a better visual experience.
+    Plug 'Yggdroot/indentLine'
+
+    " Repeat last command.
+    Plug 'tpope/vim-repeat'
 
 " End the list of vim plugins
 call plug#end()
@@ -40,4 +54,8 @@ let g:airline_theme='peaksea'
 set expandtab
 set tabstop=4
 set shiftwidth=4
+
+" Tab character indicator.
+" Any of these are good options: '|', '¦', '┆', '┊'
+let g:indentLine_char = '┆'
 
