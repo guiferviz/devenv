@@ -1,7 +1,6 @@
 
 IMAGE_NAME = guiferviz/devenv
 INSTALL_SCRIPT_NAME = devenv
-DOCKER_USER = ${cat Dockerfile | grep "ENV DOCKER_USER" | awk  '{print $3}'}
 
 
 all: Dockerfile
@@ -12,22 +11,23 @@ nocache: Dockerfile
 
 test:
 	docker run --rm \
+		--gpus all \
 		-p 8888:8888 \
-		-v ~/.ssh:/home/$(DOCKER_USER)/.ssh \
-		-v ${PWD}:/home/$(DOCKER_USER)/workspace \
+		-v ~/.ssh:/root/.ssh \
+		-v ${PWD}:/workspace \
 		-h devenv \
 		-ti guiferviz/devenv bash
 
 run:
-	echo $0
 	docker run \
 		--gpus all \
 		-p 8888:8888 \
-		-v ~/.ssh:/home/$(DOCKER_USER)/.ssh \
-		-v ${PWD}:/home/$(DOCKER_USER)/workspace \
+		-v ~/.ssh:/root/.ssh \
+		-v ${PWD}:/workspace \
 		-h devenv \
+		--name devenv \
 		-ti guiferviz/devenv bash
 
 install:
-	make run -sn > /usr/local/bin/$(INSTALL_SCRIPT_NAME) 
+	cp run_devenv.sh /usr/local/bin/$(INSTALL_SCRIPT_NAME) 
 

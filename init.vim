@@ -9,6 +9,8 @@ call plug#begin("~/.config/nvim/pluggins")
     " Download better colorschemes.
     " Sublime text monokai.
     Plug 'crusoexia/vim-monokai'
+    " Solarized (dark and light).
+    Plug 'altercation/vim-colors-solarized'
 
     " File system browser.
     Plug 'scrooloose/nerdtree'
@@ -46,7 +48,13 @@ set relativenumber
 set colorcolumn=80
 
 " Set default theme.
-colorscheme monokai
+" Uncomment next line to select monokai as default colorscheme.
+"colorscheme monokai
+" Uncomment next lines to select solarized. background can be dark or light.
+let g:solarized_termcolors=256  " Needed for terminals.
+syntax enable
+set background=dark
+colorscheme solarized
 " Set Airline status bar theme.
 let g:airline_theme='peaksea'
 
@@ -57,5 +65,5 @@ set shiftwidth=4
 
 " Tab character indicator.
 " Any of these are good options: '|', '¦', '┆', '┊'
-let g:indentLine_char = '┆'
+let g:indentLine_char = '¦'
 
