@@ -12,21 +12,25 @@ nocache: Dockerfile
 test:
 	docker run --rm \
 		--gpus all \
-		-p 8888:8888 \
+		-e DISPLAY=${DISPLAY} \
+		--network=host \
+		-v ${XAUTHORITY}:/root/.Xauthority \
+		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		-v ~/.ssh:/root/.ssh \
 		-v ${PWD}:/workspace \
-		-h devenv \
-		-ti guiferviz/devenv bash
+		-ti ${IMAGE_NAME} bash
 
 run:
 	docker run \
 		--gpus all \
-		-p 8888:8888 \
+		-e DISPLAY=${DISPLAY} \
+		--network=host \
+		-v ${XAUTHORITY}:/root/.Xauthority \
+		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		-v ~/.ssh:/root/.ssh \
 		-v ${PWD}:/workspace \
-		-h devenv \
 		--name devenv \
-		-ti guiferviz/devenv bash
+		-ti ${IMAGE_NAME} bash
 
 install:
 	cp run_devenv.sh /usr/local/bin/$(INSTALL_SCRIPT_NAME) 

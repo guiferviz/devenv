@@ -64,6 +64,10 @@ RUN apt-get install -y tmux
 # Copy configuration file.
 COPY .tmux.conf /root/.tmux.conf
 
+# Allow copy and paste between vim and the host computer.
+# Some configuration is needed when running the image.
+RUN apt-get install -y xclip
+
 # Install latex.
 #RUN apt-get install -y texlive texlive-binaries texlive-fonts-recommended \
 #  texlive-generic-recommended texlive-latex-base texlive-latex-extra \

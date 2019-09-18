@@ -1,14 +1,18 @@
 #!/bin/sh
 
-docker run \
+if docker run \
     --gpus all \
-    -p 8888:8888 \
+    -e DISPLAY=${DISPLAY} \
+    --network=host \
+    -v ${XAUTHORITY}:/root/.Xauthority \
+    -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
     -v ~/.ssh:/root/.ssh \
     -v ${PWD}:/workspace \
-    -h devenv \
-    --name devenv \
-    -it \
-    guiferviz/devenv bash
-
-#docker start -i devenv
+    --name "$1" \
+    -ti \
+    guiferviz/devenv bash; then
+	:
+else
+	docker start -i "$1"
+fi
 
