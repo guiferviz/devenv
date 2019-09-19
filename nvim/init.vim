@@ -29,6 +29,9 @@ call plug#begin("~/.config/nvim/pluggins")
     " Repeat last command.
     Plug 'tpope/vim-repeat'
 
+    " Easy work with CSV and similar separated value files.
+    Plug 'mechatroner/rainbow_csv'
+
 " End the list of vim plugins
 call plug#end()
 

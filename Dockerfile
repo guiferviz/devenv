@@ -51,8 +51,8 @@ RUN . ~/venv/bin/activate && jupyter nbextension enable codefolding/main \
 RUN apt-get install -y neovim
 # Create needed config directories.
 RUN mkdir -p /root/.config/nvim/pluggins
-# Copy settings file.
-COPY init.vim /root/.config/nvim/init.vim
+# Copy neovim config folder.
+COPY nvim /root/.config/nvim
 # Also install a plugin manager: vim-plug.
 RUN curl -fLo /root/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

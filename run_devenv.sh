@@ -10,7 +10,7 @@ if docker run \
     -v ${PWD}:/workspace \
     --name "$1" \
     -ti \
-    guiferviz/devenv bash; then
+    {{IMAGE}} bash; then
 	:
 else
 	docker start -i "$1"
