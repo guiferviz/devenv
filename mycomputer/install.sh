@@ -48,4 +48,6 @@ sudo apt-get install -y neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # This font is usefull for NeoVim Airline status bar:
 apt-get install fonts-powerline
+# Install xclip to use the clipboard from vim.
+apt-get install xclip
 
