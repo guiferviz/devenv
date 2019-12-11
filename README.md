@@ -5,7 +5,7 @@ Welcome! This repository contains all the scripts and configurations (dotfiles a
 
 If you want to have my computer you can start reading the `my_computer/README.md`.
 Apart from the installation of those basic programs, here I include all my relevant Dockerfiles.
-For example, the Python environment I currently use is created using the files under `docker_python`.
+For example, the Python environment I currently use is created using the files under `devenv_python`.
 
 
 ## Disclaimer

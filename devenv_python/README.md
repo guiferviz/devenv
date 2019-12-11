@@ -1,7 +1,7 @@
 
 # My Python development environment
 
-Image of Docker with the packages I use the most in my projects.
+Docker image with the packages I use the most in my projects.
 
 
 ## Why a Docker image?
