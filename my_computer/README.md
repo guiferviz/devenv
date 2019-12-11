@@ -3,6 +3,7 @@
 
 In this folder I have a series of scripts that allows me to replicate the installation of the most important programs in my local development environment.
 The motivation of doing this is to not be afraid of formatting my PC often and also to be able to create a clon of my computer very easy in a different machine.
+This folder does not include any Dockerfile.
 
 My computer is running Linux Mint.
 I'm pretty sure everything here is going to run also in Ubuntu, but I've never tried it
