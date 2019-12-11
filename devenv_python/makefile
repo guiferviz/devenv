@@ -26,7 +26,7 @@ test-gpu:
 		-ti $(IMAGE) bash
 
 install:
-	devenv_python.sh > /usr/local/bin/$(INSTALL_SCRIPT_NAME) 
+	cp devenv_python.sh /usr/local/bin/$(INSTALL_SCRIPT_NAME) 
 
 push:
 	ifndef TAG
