@@ -40,8 +40,15 @@ apt-get update
 apt-get -y install docker-ce docker-compose
 # Add current user to the docker group.
 usermod -aG docker $USER
+# Log out and log in is needed for the changes to take effect.
 
 # Install nvidia driver using the graphical interface.
+# Install nvidia-docker to use GPUs in docker containers.
+distribution=ubuntu18.04
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
 
 # Install neovim.
 sudo apt-get install -y neovim
@@ -50,4 +57,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 apt-get install fonts-powerline
 # Install xclip to use the clipboard from vim.
 apt-get install xclip
+
+# Install a simple screen recorder, sometimes useful.
+sudo apt install kazam
 
