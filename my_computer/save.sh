@@ -21,7 +21,7 @@ echo "you will need to copy it manually"
 # all those files.
 # A downside of this approach is that we cannot detect new files added by
 # the user.
-rsync -r --update --existing nvim/ ~/.config/nvim/
+rsync -r --update --existing ~/.config/nvim/ nvim/
 # Rainbow CSV python functions definition.
 cp ~/.rbql_init_source.py .
 

@@ -1,5 +1,8 @@
 [user]
-	name = guiferviz
-	email = guiferviz@gmail.com
+    name = guiferviz
+    email = guiferviz@gmail.com
 [alias]
-	s = status
+    s = status
+    p = push origin master
+    d = diff
+    c = commit -m

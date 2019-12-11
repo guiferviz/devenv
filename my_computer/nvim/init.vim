@@ -104,4 +104,9 @@ let NERDTreeShowHidden=1
 
 " Avoid hidden characters in markdown and JSONs, like the quotes or the *.
 set conceallevel=0
+" The plugin indentLine requires conceallevel=0 so it changes it
+" automatically. Avoid the execution of this pluging in json and markdown
+" filetypes.
+" More info in: https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
+let g:indentLine_fileTypeExclude = ['markdown', 'json']
 
