@@ -27,11 +27,15 @@ Build image using:
 
 # Publish
 
-If you are me, you (or I, because you are me) can publish the current image to the Docker Hub with:
+There is a public repository in Docker Hub that is connected to the GitHub repository and creates a new build everytime I push a new tag to the git repository.
+The tag should follow the format "v<year>.<month>" where year is the last 2 digits of the year and month is the number of the month with leading zeros if month number < 10.
+Create a local tag with:
 
-    make push TAG=<my_tag_name_here>
+    git tag -a v20.01 -m "January 2020 devenv"
 
-If you are not me you may want to change the image namespace in the makefile.
+And push the tag with:
+
+    git push origin v20.01
 
 
 # Install script for easy use of the image
