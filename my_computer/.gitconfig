@@ -5,4 +5,7 @@
     s = status
     p = push origin master
     d = diff
+    de = diff --cached
     c = commit -m
+    gist = !"git commit -a -m 'Updating gist.' && git push origin master"
+
