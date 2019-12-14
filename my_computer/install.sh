@@ -61,3 +61,8 @@ apt-get install xclip
 # Install a simple screen recorder, sometimes useful.
 sudo apt install kazam
 
+# Set python as python3 instead of python2.
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+# Install Python venv.
+sudo apt-get install python3-venv
+
