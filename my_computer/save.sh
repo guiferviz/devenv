@@ -12,6 +12,9 @@ guake --save-preferences guake.conf
 echo "Saving gitconfig file"
 cp ~/.gitconfig .
 
+echo "Saving tmux conf file"
+cp ~/.tmux.conf .
+
 echo "Updating existing NeoVim config files"
 echo "IMPORTANT: If you add a new config file that is not present in ./nvim"
 echo "you will need to copy it manually"

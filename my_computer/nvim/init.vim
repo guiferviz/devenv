@@ -32,6 +32,9 @@ call plug#begin("~/.config/nvim/pluggins")
     " Easy work with CSV and similar separated value files.
     Plug 'mechatroner/rainbow_csv'
 
+    " Snippet manager.
+    Plug 'sirver/ultisnips'
+
 " End the list of vim plugins
 call plug#end()
 
@@ -109,4 +112,9 @@ set conceallevel=0
 " filetypes.
 " More info in: https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
 let g:indentLine_fileTypeExclude = ['markdown', 'json']
+
+" Snippet manager settings.
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 

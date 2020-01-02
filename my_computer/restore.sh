@@ -11,6 +11,9 @@ guake --restore-preferences guake.conf
 echo "Copying git config file"
 cp .gitconfig ~/.
 
+echo "Copying tmux config file"
+cp .tmux.conf ~/.
+
 echo "Copying NeoVim config folder"
 echo "  You may want to reinstall the nvim plugins after this step..."
 rm -rf ~/.config/nvim
