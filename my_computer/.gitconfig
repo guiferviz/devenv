@@ -5,7 +5,8 @@
     s = status
     p = push origin master
     d = diff
-    de = diff --cached
+    ds = diff --staged
+    dw = diff --word-diff=color
     c = commit -m
     gist = !"git commit -a -m 'Updating gist.' && git push origin master"
 
