@@ -111,7 +111,7 @@ set conceallevel=0
 " automatically. Avoid the execution of this pluging in json and markdown
 " filetypes.
 " More info in: https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
-let g:indentLine_fileTypeExclude = ['markdown', 'json']
+let g:indentLine_fileTypeExclude = ['markdown', 'json', 'cards']
 
 " Snippet manager settings.
 let g:UltiSnipsExpandTrigger = '<tab>'

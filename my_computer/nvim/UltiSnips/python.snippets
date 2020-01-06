@@ -1,0 +1,73 @@
+
+snippet main "Main definition and if-main" b
+def main():
+	${0:${VISUAL:pass}}
+
+
+if __name__ == "__main__":
+	main()
+endsnippet
+
+snippet with "with" b
+with ${1:expr}`!p snip.rv = " as " if t[2] else ""`${2:var}:
+	${3:${VISUAL:pass}}
+$0
+endsnippet
+
+snippet for "For loop" b
+for ${1:item} in ${2:iterable}:
+	${3:${VISUAL:pass}}
+endsnippet
+
+########
+#  If  #
+########
+
+snippet if "If" b
+if ${1:condition}:
+	${2:${VISUAL:pass}}
+endsnippet
+
+
+########
+#  IO  #
+########
+
+snippet readtxt "Read text file" b
+with open(${1:filename}) as file:
+	text = file.read()
+	${0:lines = text.split("\n")}
+endsnippet
+
+snippet readjson "Read a JSON file" b
+import json
+with open(${1:filename}) as file:
+	data = json.load(file)
+endsnippet
+
+snippet readtxtlines "Read text file line by line" b
+with open(${1:filename}) as file:
+	for i, line in enumerate(file):
+		${0:print("Line", i, ":", line)}
+endsnippet
+
+snippet readcsv "Read CSV using Python library" b
+import csv
+with open(${1:filename}, "r") as csvfile:
+	reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+	for row in reader:
+		${0:print(", ".join(row))}
+endsnippet
+
+snippet writetxtutf8 "Write file using UTF-8 encoding" b
+import codecs
+with codecs.open(${0:filename}, "w", "utf-8") as file:
+	${0:file.write('\ufeff')}
+endsnippet
+
+snippet writejson "Write an object to a file in JSON format" b
+import json
+with open(${1:filename}, "w") as file:
+	json.dump(${2:data}, file, indent=4)
+endsnippet
+
