@@ -118,3 +118,12 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
+" Tags.
+" Use notagrelative if storing the tag file inside the ".git" folder.
+set notagrelative
+set tags+=.git/tags
+command! MakeTags !ctags -R -f ./.git/tags .
+
+" Allow find commands to find files in subdirectories.
+set path+=**
+
