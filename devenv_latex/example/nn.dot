@@ -1,0 +1,44 @@
+digraph G {
+
+    rankdir=LR
+	splines=line
+        
+    node [fixedsize=true, label="", penwidth=2];
+
+    subgraph cluster_0 {
+        color=transparent;
+		node [style=solid, color=green4, shape=circle];
+		x1 x2;
+		label = "";
+	}
+
+	subgraph cluster_1 {
+        color=transparent;
+		node [style=solid, color=blue4, shape=circle];
+		a12 a22 a32;
+		label = "";
+	}
+
+	subgraph cluster_2 {
+        color=transparent;
+		node [style=solid, color=red2, shape=circle];
+		O;
+		label="";
+	}
+
+    edge [
+        arrowhead="normal"
+    ];
+
+    x1 -> a12;
+    x1 -> a22;
+    x1 -> a32;
+    x2 -> a12;
+    x2 -> a22;
+    x2 -> a32;
+
+    a12 -> O
+    a22 -> O
+    a32 -> O
+
+}
