@@ -131,3 +131,7 @@ command! MakeTags !ctags -R -f ./.git/tags .
 " Allow find commands to find files in subdirectories.
 set path+=**
 
+" MarkdownPreview plugin can be used in any filetype, not only markdown.
+" Interested in execute the plugin in *.cards filetype.
+let g:mkdp_command_for_global = 1
+
