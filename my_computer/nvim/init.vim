@@ -35,6 +35,10 @@ call plug#begin("~/.config/nvim/pluggins")
     " Snippet manager.
     Plug 'sirver/ultisnips'
 
+    " Markdown Preview.
+    " If you have nodejs and yarn
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
 " End the list of vim plugins
 call plug#end()
 
