@@ -21,6 +21,10 @@ cp -r nvim ~/.config/nvim
 # Copy rainbow python function definitions.
 cp .rbql_init_source.py ~
 
+echo "Copying my beautiful calc script"
+cp calc.py /usr/local/bin/calc
+chmod +x /usr/local/bin/calc
+
 echo "Execute restore_setup.sh after this script to ensure that all the config"
 echo "files are been properly used"
 
