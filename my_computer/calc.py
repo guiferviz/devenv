@@ -9,7 +9,7 @@ def combination(n, k):
 
 
 def main():
-    txt = " ".join(sys.argv[1:])
+    txt = ";" + " ".join(sys.argv[1:])
     code, expression = txt.rsplit(";", 1)
     exec(code)
     res = eval(expression)
