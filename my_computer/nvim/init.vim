@@ -44,8 +44,6 @@ call plug#begin("~/.config/nvim/pluggins")
     " https://github.com/ycm-core/YouCompleteMe/wiki/Full-Installation-Guide
     " You need to compile something.
     Plug 'ycm-core/YouCompleteMe'
-    " Allow the use of YouCompleteMe and UtilSnips expands keys.
-    Plug 'ervandew/supertab'
 
 " End the list of vim plugins
 call plug#end()
@@ -126,15 +124,9 @@ set conceallevel=0
 let g:indentLine_fileTypeExclude = ['markdown', 'json', 'cards']
 
 " Snippet manager settings.
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
-" Make YCM compatible with UltiSnips (using supertab)
-" http://stackoverflow.com/a/22253548/1626737
-let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " Tags.
 " Use notagrelative if storing the tag file inside the ".git" folder.
