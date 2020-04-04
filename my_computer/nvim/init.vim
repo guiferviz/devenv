@@ -36,8 +36,14 @@ call plug#begin("~/.config/nvim/pluggins")
     Plug 'sirver/ultisnips'
 
     " Markdown Preview.
-    " If you have nodejs and yarn
+    " If you have nodejs and yarn.
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
+    " Autocompletion with support for UtilSnips.
+    " Follow the install instructions in:
+    " https://github.com/ycm-core/YouCompleteMe/wiki/Full-Installation-Guide
+    " You need to compile something.
+    Plug 'ycm-core/YouCompleteMe'
 
 " End the list of vim plugins
 call plug#end()
@@ -135,3 +141,4 @@ set path+=**
 " Interested in execute the plugin in *.cards filetype.
 let g:mkdp_command_for_global = 1
 
+let g:completor_python_binary = '/usr/bin/python3.6'
