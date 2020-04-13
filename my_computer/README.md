@@ -28,3 +28,9 @@ No other file apart from the already existing in this folder are copied.
 That means that if you create a new file inside the NeoVim config folder in your computer, that file is not going to be copied to the local directory.
 You should copy that file manually.
 
+
+# References and attributions
+
+* Syntax files for *flex* and *bison* are taken from:
+https://github.com/justinmk/vim-syntax-extra
+
