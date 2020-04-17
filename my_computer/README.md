@@ -31,6 +31,6 @@ You should copy that file manually.
 
 # References and attributions
 
-* Syntax files for *flex* and *bison* are taken from:
+* Syntax files for *flex*, *bison* and *C* are taken from:
 https://github.com/justinmk/vim-syntax-extra
 
