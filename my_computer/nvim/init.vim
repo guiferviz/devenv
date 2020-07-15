@@ -45,6 +45,14 @@ call plug#begin("~/.config/nvim/pluggins")
     " You need to compile something.
     Plug 'ycm-core/YouCompleteMe'
 
+    " Tons of syntax highlight.
+    Plug 'sheerun/vim-polyglot'
+
+    " Easy search over multiple files.
+    " Make sure you have ack, ag, pt or rg installed.
+    Plug 'dyng/ctrlsf.vim'
+    " Some other config variables are set down.
+
 " End the list of vim plugins
 call plug#end()
 
@@ -141,4 +149,26 @@ set path+=**
 " Interested in execute the plugin in *.cards filetype.
 let g:mkdp_command_for_global = 1
 
-let g:completor_python_binary = '/usr/bin/python3.6'
+" YouCompleteMe blacklist filetypes.
+" I include this line here because I want to have the plugin working even on
+" Markdown files, I want it in all the filetypes!!!
+let g:ycm_filetype_blacklist = {} 
+
+" Autoclose preview window.
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Spell check in English by default.
+set spell
+" Autocorrect the last misspelled word in insert mode.
+inoremap <C-S> <C-G>u<Esc>[s1z=`]a<C-G>u
+" Autocorrect the last misspelled word and move cursor to that word.
+nnoremap <C-S> l[s1z=
+
+" Autoreload files when modified from an external process.
+set autoread
+
+" CtrlSF configuration.
+" Install your favourite ack-like program to use in search.
+" Read CtrlSF documentation for more information.
+let g:ctrlsf_ackprg = 'pt'
+

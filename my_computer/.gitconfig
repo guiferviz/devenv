@@ -3,7 +3,10 @@
     email = guiferviz@gmail.com
 [alias]
     s = status
-    p = push origin master
+    p = push origin HEAD
+    pp = pull origin HEAD
+    l = log --graph --oneline -n10
+    tree = log --graph --oneline --all
     d = diff
     ds = diff --staged
     dw = diff --word-diff=color
