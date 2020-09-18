@@ -53,6 +53,9 @@ call plug#begin("~/.config/nvim/pluggins")
     Plug 'dyng/ctrlsf.vim'
     " Some other config variables are set down.
 
+    " Install fzf for fuzy search. I think you need to install the tool first.
+    Plug 'junegunn/fzf'
+
 " End the list of vim plugins
 call plug#end()
 
@@ -91,15 +94,16 @@ command Light call Light()
 " Set default theme.
 " Uncomment next line to select monokai as default colorscheme.
 "colorscheme monokai
-" Uncomment next lines to select solarized. background can be dark or light.
+" Uncomment next lines to select solarized. Background can be dark or light.
 let g:solarized_termcolors=256  " Needed for terminals.
 syntax enable
-" Set dark theme.
-set background=dark
-let g:airline_solarized_bg='dark'
+" Set light theme.
+set background=light
+let g:airline_solarized_bg='light'
 " When installing plugins with "nvim +PlugInstall +qall" this file, the
 " init.vim file, is loaded but the colorscheme is not still installed, so it
 " fails. That's why I'm using here a try-catch, to avoid the error message.
+" That's why we cannot use here 'call Light()' or 'call Dark()'.
 try
     colorscheme solarized
 catch
@@ -143,7 +147,8 @@ set tags+=.git/tags
 command! MakeTags !ctags -R -f ./.git/tags .
 
 " Allow find commands to find files in subdirectories.
-set path+=**
+" If you are using a fuzzy matching plugin (like fzf) this is not needed.
+"set path+=**
 
 " MarkdownPreview plugin can be used in any filetype, not only markdown.
 " Interested in execute the plugin in *.cards filetype.
@@ -170,5 +175,32 @@ set autoread
 " CtrlSF configuration.
 " Install your favourite ack-like program to use in search.
 " Read CtrlSF documentation for more information.
-let g:ctrlsf_ackprg = 'pt'
+let g:ctrlsf_ackprg = 'rg'
+
+" Useful key maps.
+" Set <leader> key to ','.
+let mapleader = ','
+" Delete text without copying.
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+vnoremap <leader>p "_dP
+" Copy to clipboard.
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+
+" Fold using indents before loading file and manual folding after.
+" FIXME: BufReadPre event not working properly.
+"augroup folding_vimrc
+"  autocmd!
+"  autocmd BufReadPre * setlocal foldmethod=indent
+"  autocmd BufReadPre * echom "Pre Read Buffer!"
+"  autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+"  autocmd BufWinEnter * echom "Win Enter Buffer!"
+"augroup END
+" Set folding method to a unique value with the next lines:
+set foldmethod=syntax
+set foldlevelstart=20
+
+" Execute current selection in a Python interpreter.
+vnoremap <f5> :!python<CR>
 
