@@ -1,5 +1,8 @@
 
-" Start the list of vim plugins.
+" List of VIM plugins.
+" To remove any pluggin delete the Plug line from this function, reload your
+" init.vim (`:source %` while editing the file or restart VIM) and call
+" `:PlugClean`.
 call plug#begin("~/.config/nvim/pluggins")
 
     " Add an status bar.
@@ -46,7 +49,7 @@ call plug#begin("~/.config/nvim/pluggins")
     Plug 'ycm-core/YouCompleteMe'
 
     " Tons of syntax highlight.
-    Plug 'sheerun/vim-polyglot'
+    "Plug 'sheerun/vim-polyglot'
 
     " Easy search over multiple files.
     " Make sure you have ack, ag, pt or rg installed.
@@ -56,6 +59,9 @@ call plug#begin("~/.config/nvim/pluggins")
     " Install fzf for fuzy search. I think you need to install the tool first.
     Plug 'junegunn/fzf'
 
+    " COC autocomplete.
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " End the list of vim plugins
 call plug#end()
 
@@ -63,7 +69,7 @@ call plug#end()
 "let g:airline_theme='powerlineish'
 
 " Add a mapping for the NERDTree command, so you can just type :T to open
-command T NERDTree
+command! T NERDTree
 
 " Allow clicks with mouse to move the cursor.
 " Don't use the mouse too much!!
@@ -88,8 +94,8 @@ function Light()
     let g:airline_solarized_bg='light'
     colorscheme solarized
 endfunction
-command Dark call Dark()
-command Light call Light()
+command! Dark call Dark()
+command! Light call Light()
 
 " Set default theme.
 " Uncomment next line to select monokai as default colorscheme.
@@ -157,7 +163,7 @@ let g:mkdp_command_for_global = 1
 " YouCompleteMe blacklist filetypes.
 " I include this line here because I want to have the plugin working even on
 " Markdown files, I want it in all the filetypes!!!
-let g:ycm_filetype_blacklist = {} 
+let g:ycm_filetype_blacklist = {}
 
 " Autoclose preview window.
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -203,4 +209,13 @@ set foldlevelstart=20
 
 " Execute current selection in a Python interpreter.
 vnoremap <f5> :!python<CR>
+
+" Avoid polyglot in CSV files, I prefer to use rainbow_csv.
+let g:polyglot_excludes = ["csv", "tsv"]
+
+" Delete all extra spaces at the end of each line.
+" `-range=%` visual ranges are allowed; default is the whole file.
+" `keeppattern` after running this command, keeps the current search pattern
+" instead of using `\s\+`.
+command! -range=% TrimEndOfLine :keeppattern <line1>,<line2>s/\s\+$//
 
