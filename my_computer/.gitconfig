@@ -1,15 +1,20 @@
 [user]
     name = guiferviz
     email = guiferviz@gmail.com
+
 [alias]
     s = status
     p = push origin HEAD
-    pp = pull origin HEAD
-    l = log --graph --oneline -n10
+    pp = pull
+    checkoutf = !"git checkout $(git branch | fzf)"
+    l = log --graph --oneline -n15
     tree = log --graph --oneline --all
     d = diff
     ds = diff --staged
     dw = diff --word-diff=color
     c = commit -m
-    gist = !"git commit -a -m 'Updating gist.' && git push origin master"
+    fc = !"git commit -a -m 'Updating repository.' && git p"
+    m = merge --no-ff
 
+[core]
+    editor = vim
