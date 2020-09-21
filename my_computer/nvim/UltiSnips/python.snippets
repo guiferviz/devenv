@@ -71,3 +71,36 @@ with open(${1:filename}, "w") as file:
 	json.dump(${2:data}, file, indent=4)
 endsnippet
 
+snippet factors "Prime factor decomposition" b
+def prime_factors(n):
+    """Return a list of the prime factors that compose n. """
+
+    # Factorization is defined for natural numbers.
+    assert n > 0
+
+    # Base case.
+    if n == 1:
+        return [1]
+
+    f = []
+    # Check 2 first for saving half iterations in the next for loop.
+    while n % 2 == 0:
+        f.append(2)
+        n /= 2
+    # Check the odd numbers.
+    for i in range(3, int(n**0.5) + 1, 2):
+        while n % i == 0:
+            f.append(i)
+            n /= i
+
+    # Prime number case.
+    if n > 1:
+        f.append(int(n))
+
+    return f
+endsnippet
+
+snippet readlist "Read integer list from standard input" w
+list(map(int, input().split()))
+endsnippet
+

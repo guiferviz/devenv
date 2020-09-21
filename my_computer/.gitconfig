@@ -17,4 +17,4 @@
     m = merge --no-ff
 
 [core]
-    editor = vim
+	editor = vim

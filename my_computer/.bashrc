@@ -115,3 +115,31 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# added by travis gem
+[ -f /home/guiferviz/.travis/travis.sh ] && source /home/guiferviz/.travis/travis.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/guiferviz/.google_cloud_sdk/path.bash.inc' ]; then . '/home/guiferviz/.google_cloud_sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/guiferviz/.google_cloud_sdk/completion.bash.inc' ]; then . '/home/guiferviz/.google_cloud_sdk/completion.bash.inc'; fi
+# Jina CLI Autocomplete
+
+_jina() {
+  COMPREPLY=()
+  local word="${COMP_WORDS[COMP_CWORD]}"
+
+  if [ "$COMP_CWORD" -eq 1 ]; then
+    COMPREPLY=( $(compgen -W "$(jina commands)" -- "$word") )
+  else
+    local words=("${COMP_WORDS[@]}")
+    unset words[0]
+    unset words[$COMP_CWORD]
+    local completions=$(jina completions "${words[@]}")
+    COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+  fi
+}
+
+complete -F _jina jina
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

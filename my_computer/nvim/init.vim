@@ -42,14 +42,18 @@ call plug#begin("~/.config/nvim/pluggins")
     " If you have nodejs and yarn.
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-    " Autocompletion with support for UtilSnips.
+    " DEPRECATED: Autocompletion with support for UtilSnips.
     " Follow the install instructions in:
     " https://github.com/ycm-core/YouCompleteMe/wiki/Full-Installation-Guide
     " You need to compile something.
-    Plug 'ycm-core/YouCompleteMe'
+    "Plug 'ycm-core/YouCompleteMe'
 
-    " Tons of syntax highlight.
-    "Plug 'sheerun/vim-polyglot'
+    " Tons of syntax highlight with Polyglot.
+    " Avoid polyglot in CSV files, I prefer to use rainbow_csv.
+    " This configuration should be before `Plug polyglot` or it will be
+    " ignored.
+    let g:polyglot_disabled = ["csv"]
+    Plug 'sheerun/vim-polyglot'
 
     " Easy search over multiple files.
     " Make sure you have ack, ag, pt or rg installed.
@@ -84,12 +88,12 @@ set relativenumber
 set colorcolumn=80
 
 " Change between dark and light colorschemes easily.
-function Dark()
+function! Dark()
     set background=dark
     let g:airline_solarized_bg='dark'
     colorscheme solarized
 endfunction
-function Light()
+function! Light()
     set background=light
     let g:airline_solarized_bg='light'
     colorscheme solarized
@@ -141,7 +145,7 @@ set conceallevel=0
 " More info in: https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
 let g:indentLine_fileTypeExclude = ['markdown', 'json', 'cards']
 
-" Snippet manager settings.
+" Snippet manager UltiSnips settings.
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
@@ -160,13 +164,13 @@ command! MakeTags !ctags -R -f ./.git/tags .
 " Interested in execute the plugin in *.cards filetype.
 let g:mkdp_command_for_global = 1
 
+" DEPRECATED: YouCompleteMe configuration.
 " YouCompleteMe blacklist filetypes.
 " I include this line here because I want to have the plugin working even on
 " Markdown files, I want it in all the filetypes!!!
-let g:ycm_filetype_blacklist = {}
-
+"let g:ycm_filetype_blacklist = {}
 " Autoclose preview window.
-let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Spell check in English by default.
 set spell
@@ -210,12 +214,18 @@ set foldlevelstart=20
 " Execute current selection in a Python interpreter.
 vnoremap <f5> :!python<CR>
 
-" Avoid polyglot in CSV files, I prefer to use rainbow_csv.
-let g:polyglot_excludes = ["csv", "tsv"]
+" Config vim-markdown included in polyglot.
+let g:vim_markdown_math = 1
 
 " Delete all extra spaces at the end of each line.
 " `-range=%` visual ranges are allowed; default is the whole file.
 " `keeppattern` after running this command, keeps the current search pattern
 " instead of using `\s\+`.
-command! -range=% TrimEndOfLine :keeppattern <line1>,<line2>s/\s\+$//
+" `normal <C-o>` moves cursor back to current position. If not, the cursor will
+" be in the latest changed line.
+command! -range=% TrimEndOfLine :keeppattern <line1>,<line2>s/\s\+$// | normal <C-o>
 
+" Coc configuration.
+" Navigate completion list with tab and shift-tab.
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

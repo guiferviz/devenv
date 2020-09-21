@@ -70,13 +70,16 @@ def _parse_comments(s):
                     rv.insert(0, ("SINGLE_CHAR", text, text, text, ""))
     except StopIteration:
         return rv
+
+# Import script from my utility module.
+from snippet_utils import get_uuid
 endglobal
+
 
 snippet uuid "Random UUID" w
 `!p
 if not snip.c:
-	import uuid
-	snip.rv = str(uuid.uuid4())`
+	snip.rv = get_uuid()`
 endsnippet
 
 snippet box "A nice box with the current comment symbol" b
